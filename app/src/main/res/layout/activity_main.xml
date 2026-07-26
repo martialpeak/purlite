@@ -17,5 +17,5 @@
             <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
         </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    <com.google.android.material.navigation.NavigationView android:id="@+id/na" android:layout_width="300dp" android:layout_height="match_parent" android:layout_gravity="right" android:background="@drawable/modern_nav_bg" android:layout_marginStart="48dp" app:headerLayout="@layout/heder" app:itemTextColor="@color/accent_cyan" app:itemIconTint="@color/text_secondary" app:itemTextAppearance="@style/ModernNavText" app:menu="@menu/options_menu" app:elevation="16dp" />
+    <com.google.android.material.navigation.NavigationView android:id="@+id/na" android:layout_width="300dp" android:layout_height="match_parent" android:layout_gravity="right" android:background="@drawable/modern_nav_bg" android:layout_marginStart="48dp" app:headerLayout="@layout/heder" app:itemTextColor="@color/yello" app:menu="@menu/options_menu" app:elevation="16dp" />
 </androidx.drawerlayout.widget.DrawerLayout>
