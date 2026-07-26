@@ -29,7 +29,13 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation files('libs/purlite.aar')
+    implementation(name: 'purlite', ext: 'aar')
 }
