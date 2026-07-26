@@ -1,27 +1,52 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.V2rayExample" parent="Theme.AppCompat">
-        <item name="colorPrimary">#017EF6</item>
-        <item name="android:statusBarColor">@color/gray</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="popupMenuStyle">@style/CustomPopupMenu</item>
-
+    <style name="Theme.V2rayExample" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent_cyan</item>
+        <item name="colorPrimaryVariant">@color/accent_purple</item>
+        <item name="colorOnPrimary">@color/bg_dark</item>
+        <item name="colorSecondary">@color/accent_purple</item>
+        <item name="colorSecondaryVariant">@color/accent_blue</item>
+        <item name="colorOnSecondary">@color/bg_dark</item>
+        <item name="android:statusBarColor">@color/bg_dark</item>
+        <item name="android:navigationBarColor">@color/bg_dark</item>
+        <item name="android:windowBackground">@color/bg_dark</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="popupMenuStyle">@style/ModernPopupMenu</item>
+        <item name="actionBarStyle">@style/ModernActionBar</item>
+    </style>
+    <style name="ModernActionBar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+        <item name="titleTextColor">@color/white</item>
     </style>
     <style name="OverFlow" parent="@style/Widget.AppCompat.Light.ActionButton.Overflow">
         <item name="android:src">@drawable/win</item>
     </style>
-    <style name="MyDialogStyle" parent="android:Theme.Material.Light.Dialog.NoActionBar">
-        <item name="android:buttonBarButtonStyle">@style/MyButtonsStyle</item>
-        <item name="android:colorBackground">@color/gray2</item>
+    <style name="MyDialogStyle" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:background">@drawable/modern_card</item>
+        <item name="android:buttonBarButtonStyle">@style/ModernDialogButton</item>
+        <item name="android:colorBackground">@color/bg_surface</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_primary</item>
         <item name="android:layout_gravity">center</item>
-
+        <item name="colorAccent">@color/accent_cyan</item>
     </style>
-    <style name="MyButtonsStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/purnet</item>
+    <style name="ModernDialogButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/accent_cyan</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
-
-
-
+    <style name="ModernPopupMenu" parent="Widget.MaterialComponents.PopupMenu">
+        <item name="android:popupBackground">@drawable/modern_card</item>
+        <item name="android:elevation">16dp</item>
+    </style>
+    <style name="ModernNavText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:paddingVertical">14dp</item>
+    </style>
 </resources>
