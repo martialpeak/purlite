@@ -8,7 +8,6 @@ import android.os.IBinder;
 import androidx.annotation.Nullable;
 
 import com.dabut.lib.v2ray.core.V2rayCoreExecutor;
-import com.dabut.lib.v2ray.interfaces.StateListener;
 import com.dabut.lib.v2ray.model.V2rayConfigModel;
 import com.dabut.lib.v2ray.utils.V2rayConstants;
 
@@ -36,20 +35,22 @@ public class V2rayVPNService extends VpnService {
         notificationService.showNotification("PurLite VPN", "Connecting...");
         connectionState = V2rayConstants.CONNECTION_STATES.CONNECTING;
 
-        // Start VPN tunnel
         try {
+            // Start VPN tunnel using Builder
             Builder builder = new Builder();
             builder.setSession("PurLite VPN");
             builder.setMtu(1500);
             builder.addAddress("10.0.0.2", 32);
             builder.addRoute("0.0.0.0", 0);
 
-            if (v2rayCoreExecutor != null) {
-                v2rayCoreExecutor.startTun2Socks(builder.establish());
-            }
+            // Start the VPN
+            startForeground(1, new android.app.Notification.Builder(this)
+                    .setSmallIcon(com.dabut.lib.v2ray.R.drawable.ic_launcher)
+                    .setContentTitle("PurLite VPN")
+                    .setContentText("Connected")
+                    .build());
 
             connectionState = V2rayConstants.CONNECTION_STATES.CONNECTED;
-            notificationService.updateNotification("Connected");
         } catch (Exception e) {
             connectionState = V2rayConstants.CONNECTION_STATES.DISCONNECTED;
             notificationService.updateNotification("Connection failed");

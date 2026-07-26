@@ -7,11 +7,13 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
 import com.dabut.lib.v2ray.R;
+import com.dabut.lib.v2ray.interfaces.TrafficListener;
 
 public class NotificationService {
     private static final String CHANNEL_ID = "purlite_vpn_channel";
@@ -19,10 +21,17 @@ public class NotificationService {
     private final Context context;
     private final NotificationManager notificationManager;
 
+    public TrafficListener trafficListener;
+
     public NotificationService(Context context) {
         this.context = context;
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         createNotificationChannel();
+
+        // Initialize traffic listener
+        trafficListener = (uploadSpeed, downloadSpeed, uploadedTraffic, downloadedTraffic, ctx) -> {
+            // Update notification with traffic info
+        };
     }
 
     private void createNotificationChannel() {
@@ -54,11 +63,31 @@ public class NotificationService {
         }
     }
 
+    public void setConnectedNotification(String remark, int appIcon) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle("PurLite VPN")
+                .setContentText("Connected to " + remark)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setOngoing(true)
+                .setAutoCancel(false);
+
+        if (context instanceof Service) {
+            ((Service) context).startForeground(NOTIFICATION_ID, builder.build());
+        } else {
+            notificationManager.notify(NOTIFICATION_ID, builder.build());
+        }
+    }
+
     public void updateNotification(String content) {
         showNotification("PurLite VPN", content);
     }
 
-    public void cancelNotification() {
+    public void dismissNotification() {
         notificationManager.cancel(NOTIFICATION_ID);
+    }
+
+    public void cancelNotification() {
+        dismissNotification();
     }
 }
